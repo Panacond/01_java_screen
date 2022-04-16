@@ -13,12 +13,12 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElemen
 public class HelloGoogle {
     public static void main(String[] args) {
         WebDriver driver = new ChromeDriver();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         try {
             driver.manage().window().maximize();
             driver.get("https://google.com/ncr");
             driver.findElement(By.name("q")).sendKeys("yacht" + Keys.ENTER);
-            driver.findElement(cssSelector("a[data-hveid='CAIQAw']")).click();
+            driver.findElement(By.xpath("//a[text()='Images']")).click();
             File f = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
             FileUtils.copyFile(f, new File("src/main/resources/screenshot01.png"));
             WebElement firstResult = wait.until(presenceOfElementLocated(cssSelector("h3")));

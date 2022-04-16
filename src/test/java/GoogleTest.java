@@ -28,9 +28,9 @@ public class GoogleTest {
     }
 
     @Test(priority = 1)
-    public void checkGoogle() throws IOException, InterruptedException {
+    public void checkGoogle() throws IOException {
         driver.findElement(By.name("q")).sendKeys("yacht" + Keys.ENTER);
-        driver.findElement(cssSelector("a[data-hveid='CAIQAw']")).click();
+        driver.findElement(By.xpath("//a[text()='Images']")).click();
         File f = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(f, new File("src/main/resources/screenshot02.png"));
         WebElement firstResult = wait.until(presenceOfElementLocated(cssSelector("h3")));
